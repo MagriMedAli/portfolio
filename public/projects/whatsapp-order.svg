@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400">
+  <rect width="640" height="400" fill="#12161C"/>
+  <g stroke="#232A33" stroke-width="1.5">
+    <line x1="0" y1="100" x2="640" y2="100"/>
+    <line x1="0" y1="200" x2="640" y2="200"/>
+    <line x1="0" y1="300" x2="640" y2="300"/>
+    <line x1="160" y1="0" x2="160" y2="400"/>
+    <line x1="320" y1="0" x2="320" y2="400"/>
+    <line x1="480" y1="0" x2="480" y2="400"/>
+  </g>
+  <circle cx="160" cy="100" r="5" fill="#F2A340"/>
+  <circle cx="320" cy="200" r="5" fill="#F2A340"/>
+  <circle cx="480" cy="300" r="5" fill="#3D9C8A"/>
+  <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" fill="#8B94A0" font-family="monospace" font-size="18" letter-spacing="1">
+    AI WHATSAPP ORDER AUTOMATION
+  </text>
+  <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" fill="#5B6472" font-family="monospace" font-size="12">
+    replace with a real screenshot
+  </text>
+</svg>
