@@ -41,7 +41,7 @@ export const projects: Project[] = [
       "Admin dashboard to follow leads",
     ],
     repoUrl: "https://github.com/MagriMedAli/flowdesk-ai-agent",
-    image: "/projects/Qualibook.png",
+    image: "/projects/qualibook.png",
   },
     
   {
