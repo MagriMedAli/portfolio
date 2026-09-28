@@ -10,7 +10,7 @@ export default function About() {
           <p>
             I&apos;m a software engineering graduate from Tunisia, working at the
             intersection of AI automation, workflow automation, full-stack
-            development, API integrations, and full-stack development.
+            development and API integrationst.
           </p>
           <p>
             My focus is on solving real business problems with software rather

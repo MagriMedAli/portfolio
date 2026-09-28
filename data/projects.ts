@@ -11,6 +11,55 @@ export interface Project {
 
 // Edit repoUrl below once each repository is public.
 export const projects: Project[] = [
+      {
+    id: "flowdesk-ai-sales-agent",
+    title: "FlowDesk AI Sales & Support Agent",
+    tag: "RAG + CRM agent",
+    description:
+      "A chatbot that answers product and pricing questions from a company's own documents, spots buying intent, and creates the contact and deal in HubSpot after the customer confirms their details.",
+    stack: ["n8n", "Pinecone", "HubSpot", "RAG"], // add the LLM you used in the final version
+    features: [
+      "RAG answers grounded in a knowledge base",
+      "7-intent classification from the full conversation",
+      "Multi-turn lead qualification with confirmation before any CRM action",
+      "HubSpot contact and deal creation",
+    ],
+    repoUrl: "https://github.com/MagriMedAli/QualiBook",
+    image: "/projects/flowdesk-1.png",
+  },
+  {
+    id: "ai-lead-qualification-agent",
+    title: "AI Lead Qualification Agent",
+    tag: "Conversational AI agent",
+    description:
+      "A WhatsApp agent for a real estate agency. It talks to new leads, asks qualifying questions one at a time, and saves what it learns per lead so a conversation can resume later.",
+    stack: ["n8n", "Google Gemini", "PostgreSQL", "WhatsApp Cloud API"],
+    features: [
+      "Multi-turn conversation with memory per lead",
+      "AI extracts budget, area, intent and timeline",
+      "Lead state saved in PostgreSQL",
+      "Admin dashboard to follow leads",
+    ],
+    repoUrl: "https://github.com/MagriMedAli/flowdesk-ai-agent",
+    image: "/projects/Qualibook.png",
+  },
+    
+  {
+    id: "ai-support-ticket-triage",
+    title: "AI Support Ticket Triage",
+    tag: "Customer support automation",
+    description:
+      "An AI support system that reads incoming emails, scores its own confidence, and replies automatically only when it is sure. Uncertain tickets go to a human on Telegram first, so the AI never makes promises it shouldn't.",
+    stack: ["n8n", "Google Gemini", "PostgreSQL", "Gmail", "Telegram Bot API"],
+    features: [
+      "Confidence-based routing (auto-reply or human review)",
+      "AI ticket classification by category and urgency",
+      "Human-in-the-loop review through Telegram",
+      "Ticket logging and state in PostgreSQL",
+    ],
+    repoUrl: "https://github.com/MagriMedAli/TriageAigit",
+    image: "/projects/support.png",
+  },
   {
     id: "whatsapp-order-automation",
     title: "AI WhatsApp Order Automation",
@@ -28,7 +77,7 @@ export const projects: Project[] = [
       "WhatsApp confirmations",
       "PostgreSQL persistence",
     ],
-    repoUrl: "https://github.com/MagriMedAli/-order-automation-system", // TODO: replace with repo URL
+    repoUrl: "https://github.com/MagriMedAli/WhatsAPP-order-automation-system", // TODO: replace with repo URL
     image: "/projects/whatsapp-order.jpg",
   },
   {
