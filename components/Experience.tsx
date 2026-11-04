@@ -1,38 +1,52 @@
+import { BigTitle, Label, Reveal } from "./ui";
+
+const entries = [
+  {
+    period: "2023 — Now",
+    title: "AI Automation Developer",
+    place: "Self-employed · Sousse, Tunisia",
+    body: "Working with local small businesses to find repetitive processes and replace them with custom automation: workflow automations, API integrations, data processing systems and AI-powered tools built with Python, n8n, FastAPI and PostgreSQL.",
+    current: true,
+  },
+  {
+    period: "Education",
+    title: "B.Sc. Software Engineering",
+    place: "Institut Supérieur d'Informatique et de Mathématiques de Monastir (ISIMM)",
+  },
+];
+
 export default function Experience() {
   return (
-    <section id="experience" className="border-t border-line py-24 md:py-28">
-      <div className="section-shell grid grid-cols-1 gap-10 md:grid-cols-[0.4fr_0.6fr] md:gap-16">
-        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink md:text-3xl">
-          Experience
-        </h2>
+    <section id="experience" className="relative bg-paper py-24 text-ink md:py-40">
+      <div className="section-shell">
+        <Label className="text-cobalt">Experience</Label>
+        <BigTitle
+          className="mt-6"
+          lines={[
+            <>
+              Where I&apos;ve <span className="font-serif font-normal lowercase italic tracking-[-0.02em] text-cobalt">been</span>
+            </>,
+          ]}
+        />
 
-        <div className="max-w-2xl border-l border-line pl-6">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-            <h3 className="font-display text-lg font-semibold text-ink">
-              AI Automation Developer
-            </h3>
-            <span className="font-mono text-xs text-faint">2023 — Present</span>
-          </div>
-          <p className="mt-1 text-sm text-muted">Self-employed, based in Sousse, Tunisia</p>
-          <p className="mt-4 text-base leading-relaxed text-muted">
-            Worked independently with local small businesses to identify
-            repetitive processes and build custom automation solutions.
-            Developed workflow automations, API integrations, data processing
-            systems, and AI-powered tools using Python, n8n, FastAPI, and
-            PostgreSQL. Helped businesses reduce manual work and improve
-            operational efficiency through tailored automation solutions.
-          </p>
-
-          <div className="mt-10 border-t border-line pt-6">
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-              <h3 className="font-display text-base font-semibold text-ink">
-                Bachelor&apos;s Degree in Software Engineering
-              </h3>
-            </div>
-            <p className="mt-1 text-sm text-muted">
-              Institut Sup&eacute;rieur d&apos;Informatique et de Math&eacute;matiques de Monastir (ISIMM), Tunisia
-            </p>
-          </div>
+        <div className="mt-14 border-t border-ink/15 md:mt-20">
+          {entries.map((e, i) => (
+            <Reveal key={e.title} delay={i * 0.08}>
+              <article className="grid grid-cols-1 gap-4 border-b border-ink/15 py-10 md:grid-cols-[14rem_1fr_1fr] md:gap-10 md:py-14">
+                <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-stone">
+                  {e.current && <span className="h-2 w-2 rounded-full bg-cobalt" />}
+                  {e.period}
+                </p>
+                <div>
+                  <h3 className="font-display text-3xl font-extrabold uppercase leading-[0.95] tracking-[-0.04em] md:text-5xl">
+                    {e.title}
+                  </h3>
+                  <p className="mt-3 text-sm font-medium text-cobalt">{e.place}</p>
+                </div>
+                {e.body ? <p className="text-[15px] leading-relaxed text-stone">{e.body}</p> : <span />}
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

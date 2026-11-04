@@ -3,17 +3,22 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   *,
   *::before,
   *::after {
@@ -25,42 +30,44 @@ html {
 }
 
 body {
-  background-color: #0b0e12;
-  color: #e7eaee;
+  background-color: #0d0d0f;
+  color: #0d0d0f;
   font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background-color: rgba(242, 163, 64, 0.28);
-  color: #fff;
+  background-color: #d4f54a;
+  color: #0d0d0f;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0e12;
+  background: #0d0d0f;
 }
 ::-webkit-scrollbar-thumb {
-  background: #232a33;
+  background: #2e3bff;
   border-radius: 6px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #2e3644;
 }
 
 :focus-visible {
-  outline: 2px solid #f2a340;
+  outline: 2px solid #2e3bff;
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 6px;
+}
+.on-dark :focus-visible,
+.on-dark:focus-visible {
+  outline-color: #d4f54a;
 }
 
 .section-shell {
-  max-width: 72rem;
+  max-width: 88rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -70,17 +77,40 @@ body {
   }
 }
 
-.node-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #f2a340;
-  box-shadow: 0 0 0 3px rgba(242, 163, 64, 0.15);
-  flex-shrink: 0;
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-.grain {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 22px 22px;
+/* Film grain over everything */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Giant name letters: each one jumps and turns lime under the cursor */
+.hero-letter {
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s;
+}
+@media (pointer: fine) {
+  .hero-letter:hover {
+    transform: translateY(-0.06em) rotate(-4deg);
+    color: #d4f54a;
+  }
+}
+
+.text-outline-paper {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(239, 235, 227, 0.35);
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }

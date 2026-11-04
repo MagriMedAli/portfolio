@@ -1,33 +1,21 @@
-import { Github, Linkedin } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line py-10">
-      <div className="section-shell flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <p className="text-xs text-faint">
-          &copy; {new Date().getFullYear()} Mohamed Ali Magri. Building systems.
-        </p>
-        <div className="flex items-center gap-5">
-          <a
-            href="https://github.com/MagriMedAli"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile"
-            className="text-muted transition-colors hover:text-ink"
-          >
-            <Github size={16} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/mohamed-ali-magri-8639ba436/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn profile"
-            className="text-muted transition-colors hover:text-ink"
-          >
-            <Linkedin size={16} />
-          </a>
-        </div>
+    <footer className="on-dark overflow-hidden bg-cobalt pt-10 text-paper">
+      <div className="section-shell flex flex-col justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.18em] sm:flex-row">
+        <p>© {new Date().getFullYear()} Mohamed Ali Magri</p>
+        <p className="text-paper/70">AI Automation &amp; Full-Stack Developer</p>
+        <a href="#home" className="inline-flex items-center gap-1.5 hover:text-lime">
+          Back to top <ArrowUp size={13} />
+        </a>
       </div>
+      <p
+        aria-hidden="true"
+        className="mt-8 select-none whitespace-nowrap text-center font-display text-[11.4vw] font-extrabold uppercase leading-[0.78] tracking-[-0.06em] text-paper"
+      >
+        Mohamed Ali Magri
+      </p>
     </footer>
   );
 }

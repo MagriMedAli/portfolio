@@ -6,7 +6,7 @@ export interface StackGroup {
 export const stackGroups: StackGroup[] = [
   {
     label: "AI & Automation",
-    items: ["n8n", "OpenAI", "Google Gemini", "AI APIs"],
+    items: ["n8n", "OpenAI", "Google Gemini", "Groq", "RAG / Pinecone"],
   },
   {
     label: "Backend",
@@ -14,14 +14,14 @@ export const stackGroups: StackGroup[] = [
   },
   {
     label: "Database",
-    items: ["PostgreSQL", "MongoDB"],
+    items: ["PostgreSQL", "MongoDB", "Supabase"],
   },
   {
     label: "Frontend",
-    items: ["React", "Next.js", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
+    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
   },
   {
     label: "Tools",
-    items: ["Docker", "Git", "GitHub", "VS Code"],
+    items: ["Docker", "Git", "Playwright"],
   },
 ];

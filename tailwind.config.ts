@@ -1,32 +1,57 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class",
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./data/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        base: "#0B0E12",
-        surface: "#12161C",
-        surface2: "#181D25",
-        line: "#232A33",
-        ink: "#E7EAEE",
-        muted: "#8B94A0",
-        faint: "#5B6472",
-        signal: "#F2A340",
-        signaldim: "#8A5E27",
-        wire: "#3D9C8A",
+        // Dark side
+        ink: "#0D0D0F",
+        coal: "#151518",
+        coal2: "#1D1D22",
+        edge: "#2B2B32",
+        fog: "#A6A6B0",
+        faint: "#6E6E78",
+        // Light side
+        paper: "#EFEBE3",
+        paper2: "#E4DFD4",
+        stone: "#66645F",
+        // Brand
+        cobalt: "#2E3BFF",
+        cobaltdeep: "#1F28C9",
+        lime: "#D4F54A",
       },
       fontFamily: {
-        display: ["var(--font-space-grotesk)", "sans-serif"],
+        display: ["var(--font-bricolage)", "sans-serif"],
+        serif: ["var(--font-instrument)", "serif"],
         body: ["var(--font-inter)", "sans-serif"],
         mono: ["var(--font-jbmono)", "monospace"],
       },
       maxWidth: {
-        content: "72rem",
+        content: "88rem",
       },
-      boxShadow: {
-        node: "0 0 0 1px rgba(242,163,64,0.25), 0 8px 30px -12px rgba(0,0,0,0.6)",
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        marqueeRev: {
+          from: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(0)" },
+        },
+        pulseDot: {
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(212,245,74,0.6)" },
+          "50%": { boxShadow: "0 0 0 6px rgba(212,245,74,0)" },
+        },
+        spinSlow: {
+          to: { transform: "rotate(360deg)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 30s linear infinite",
+        marqueeRev: "marqueeRev 34s linear infinite",
+        pulseDot: "pulseDot 2s ease-in-out infinite",
+        spinSlow: "spinSlow 16s linear infinite",
       },
     },
   },

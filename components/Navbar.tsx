@@ -2,117 +2,116 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Github, Linkedin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { ease } from "./ui";
 
 const links = [
-  { href: "#home", label: "Home" },
+  { href: "#work", label: "Work" },
   { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
+  { href: "#services", label: "Services" },
+  { href: "#process", label: "Process" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
+  // Slide away while scrolling down, come back when scrolling up
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setHidden(y > 200 && y > last);
+      last = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+  }, [open]);
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-base/85 backdrop-blur-md border-b border-line" : "bg-transparent border-b border-transparent"
-      }`}
-    >
-      <nav className="section-shell flex h-16 items-center justify-between" aria-label="Primary">
-        <a href="#home" className="font-display text-sm font-semibold tracking-tight text-ink">
-          M. Ali Magri
-          <span className="ml-2 hidden text-faint sm:inline">/ automation systems</span>
-        </a>
-
-        <ul className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-muted transition-colors hover:text-ink"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="hidden items-center gap-4 md:flex">
-          <a
-            href="https://github.com/MagriMedAli"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile"
-            className="text-muted transition-colors hover:text-ink"
-          >
-            <Github size={18} strokeWidth={1.75} />
+    <>
+      <motion.header
+        animate={{ y: hidden && !open ? "-120%" : 0 }}
+        transition={{ duration: 0.45, ease }}
+        className="fixed inset-x-0 top-0 z-[70] mix-blend-difference"
+      >
+        <nav aria-label="Primary" className="section-shell flex items-center justify-between py-5 text-white">
+          <a href="#home" className="group font-display text-base font-bold uppercase tracking-[-0.02em] md:text-lg">
+            Mohamed Ali Magri
+            <span className="inline-block transition-transform duration-300 group-hover:rotate-90">®</span>
           </a>
-          <a
-            href="https://www.linkedin.com/in/mohamed-ali-magri-8639ba436/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn profile"
-            className="text-muted transition-colors hover:text-ink"
-          >
-            <Linkedin size={18} strokeWidth={1.75} />
-          </a>
-        </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="text-ink md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </nav>
+          <ul className="hidden items-center gap-8 lg:flex">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className="group relative font-mono text-xs uppercase tracking-[0.16em]">
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-white transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.16em] lg:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? "Close" : "Menu"}
+            <span className="relative block h-3 w-6">
+              <span
+                className={`absolute left-0 h-px w-6 bg-white transition-all duration-300 ${open ? "top-1.5 rotate-45" : "top-0"}`}
+              />
+              <span
+                className={`absolute left-0 h-px w-6 bg-white transition-all duration-300 ${open ? "top-1.5 -rotate-45" : "top-3"}`}
+              />
+            </span>
+          </button>
+        </nav>
+      </motion.header>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden border-b border-line bg-base md:hidden"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+            className="on-dark fixed inset-0 z-[65] flex flex-col justify-between bg-cobalt px-4 pb-8 pt-24 text-paper lg:hidden"
           >
-            <ul className="section-shell flex flex-col gap-1 py-4">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <a
+            <ul className="flex flex-col gap-1">
+              {links.map((link, i) => (
+                <li key={link.href} className="overflow-hidden">
+                  <motion.a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-2 text-base text-muted hover:text-ink"
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.15 + i * 0.05, ease }}
+                    className="flex items-baseline gap-4 font-display text-6xl font-extrabold uppercase tracking-[-0.05em]"
                   >
+                    <span className="font-mono text-xs font-normal tracking-normal text-lime">0{i + 1}</span>
                     {link.label}
-                  </a>
+                  </motion.a>
                 </li>
               ))}
-              <li className="flex gap-4 pt-2">
-                <a href="https://github.com/MagriMedAli" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-ink" aria-label="GitHub profile">
-                  <Github size={18} />
-                </a>
-                <a href="https://www.linkedin.com/in/mohamed-ali-magri-8639ba436/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-ink" aria-label="LinkedIn profile">
-                  <Linkedin size={18} />
-                </a>
-              </li>
             </ul>
+            <a
+              href="mailto:meddali.magri@gmail.com"
+              className="inline-flex items-center gap-2 font-mono text-sm text-lime"
+            >
+              meddali.magri@gmail.com <ArrowUpRight size={14} />
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
