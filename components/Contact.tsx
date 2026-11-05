@@ -98,7 +98,7 @@ export default function Contact() {
             <div className="bg-coal p-6 md:p-8">
               <span className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">Local time</span>
               <span className="mt-2 block font-display text-lg font-semibold md:text-xl">
-                <TunisClock /> · Sousse, TN
+                <TunisClock /> · Monastir, TN
               </span>
             </div>
           </div>

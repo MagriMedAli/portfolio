@@ -6,7 +6,7 @@ import { ease } from "./ui";
 
 const KEY = "mam-intro-seen";
 
-/** Counter + name, then a cobalt curtain lifts. Once per browser session. */
+/** Counter + name, then a forest curtain lifts. Once per browser session. */
 export default function Preloader() {
   const [show, setShow] = useState(true);
   const [count, setCount] = useState(0);
@@ -55,12 +55,12 @@ export default function Preloader() {
           key="preloader"
           exit={{ y: "-100%" }}
           transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[100] flex flex-col justify-between bg-cobalt p-5 text-paper md:p-10"
+          className="fixed inset-0 z-[100] flex flex-col justify-between bg-forest p-5 text-paper md:p-10"
           aria-hidden="true"
         >
           <div className="flex justify-between font-mono text-[11px] uppercase tracking-[0.2em]">
             <span>Portfolio ©{new Date().getFullYear()}</span>
-            <span>Sousse, TN</span>
+            <span>Monastir, TN</span>
           </div>
           <div className="overflow-hidden">
             <motion.p

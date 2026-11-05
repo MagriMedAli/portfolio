@@ -97,6 +97,7 @@ export function Magnetic({ children, strength = 0.35 }: { children: ReactNode; s
 export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
     let raf = 0;
     let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
     import("lenis").then(({ default: Lenis }) => {

@@ -68,7 +68,7 @@ function SpinBadge() {
           <defs>
             <path id="badge-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
           </defs>
-          <text fill="#EFEBE3" fontSize="14" fontFamily="var(--font-jbmono), monospace">
+          <text fill="#F1F0E8" fontSize="14" fontFamily="var(--font-jbmono), monospace">
             <textPath href="#badge-circle" textLength="486" lengthAdjust="spacing">
               AVAILABLE FOR FREELANCE ✺ OPEN TO WORK ✺
             </textPath>
@@ -78,7 +78,7 @@ function SpinBadge() {
           <span className="block h-full w-full overflow-hidden rounded-full bg-lime">
             <Image src="/portrait-head.webp" alt="" fill sizes="96px" className="rounded-full object-cover" />
           </span>
-          <span className="absolute -bottom-1 -right-1 grid h-8 w-8 place-items-center rounded-full bg-ink text-lime ring-2 ring-cobalt">
+          <span className="absolute -bottom-1 -right-1 grid h-8 w-8 place-items-center rounded-full bg-ink text-lime ring-2 ring-forest">
             <ArrowUpRight size={16} strokeWidth={2.25} className="transition-transform duration-500 group-hover:rotate-45" />
           </span>
         </span>
@@ -109,7 +109,7 @@ export default function Hero() {
     <section
       id="home"
       ref={ref}
-      className="on-dark relative overflow-hidden bg-cobalt pb-16 pt-24 text-paper md:pb-24 md:pt-28"
+      className="on-dark relative overflow-hidden bg-forest pb-16 pt-24 text-paper md:pb-24 md:pt-28"
     >
       <div aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 opacity-60" />
 
@@ -123,7 +123,7 @@ export default function Hero() {
           <span>AI Automation &amp; Full-Stack Developer</span>
           <span className="flex items-center gap-2">
             <span className="h-2 w-2 animate-pulseDot rounded-full bg-lime" />
-            Sousse, Tunisia
+            Monastir, Tunisia
           </span>
         </motion.div>
 

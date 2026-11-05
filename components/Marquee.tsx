@@ -34,7 +34,7 @@ function Tape({
 export default function Marquee() {
   return (
     <div
-      className="relative z-10 overflow-hidden bg-[linear-gradient(to_bottom,#2E3BFF_50%,#EFEBE3_50%)] py-12 md:py-16"
+      className="relative z-10 overflow-hidden bg-[linear-gradient(to_bottom,#242A25_50%,#F1F0E8_50%)] py-12 md:py-16"
       aria-label="What I do and the tools I use"
     >
       <div className="-rotate-[3deg] scale-110">

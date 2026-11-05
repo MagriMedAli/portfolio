@@ -29,37 +29,42 @@ html.lenis body {
   }
 }
 
+html,
 body {
-  background-color: #0d0d0f;
-  color: #0d0d0f;
+  /* clip (not hidden) so nothing can make the page pan sideways on phones, without breaking sticky */
+  overflow-x: clip;
+}
+
+body {
+  background-color: #111412;
+  color: #111412;
   font-family: var(--font-inter), sans-serif;
-  overflow-x: hidden;
 }
 
 ::selection {
-  background-color: #d4f54a;
-  color: #0d0d0f;
+  background-color: #b8e36a;
+  color: #111412;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0d0d0f;
+  background: #111412;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2e3bff;
+  background: #b8e36a;
   border-radius: 6px;
 }
 
 :focus-visible {
-  outline: 2px solid #2e3bff;
+  outline: 2px solid #4b6620;
   outline-offset: 3px;
   border-radius: 6px;
 }
 .on-dark :focus-visible,
 .on-dark:focus-visible {
-  outline-color: #d4f54a;
+  outline-color: #b8e36a;
 }
 
 .section-shell {
@@ -101,7 +106,7 @@ body {
 @media (pointer: fine) {
   .hero-letter:hover {
     transform: translateY(-0.06em) rotate(-4deg);
-    color: #d4f54a;
+    color: #b8e36a;
   }
 }
 

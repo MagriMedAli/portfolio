@@ -36,13 +36,13 @@ export default function Services() {
   return (
     <section id="services" className="relative bg-paper py-24 text-ink md:py-40">
       <div className="section-shell">
-        <Label className="text-cobalt">Services</Label>
+        <Label className="text-moss">Services</Label>
         <BigTitle
           className="mt-6"
           lines={[
             "What I can",
             <>
-              build <span className="font-serif font-normal lowercase italic tracking-[-0.02em] text-cobalt">for you</span>
+              build <span className="font-serif font-normal lowercase italic tracking-[-0.02em] text-moss">for you</span>
             </>,
           ]}
         />
@@ -60,7 +60,7 @@ export default function Services() {
                 {/* Cobalt fill that rises on hover */}
                 <span
                   aria-hidden="true"
-                  className="absolute inset-0 origin-bottom scale-y-0 bg-cobalt transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100"
+                  className="absolute inset-0 origin-bottom scale-y-0 bg-forest transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100"
                 />
                 <div className="relative grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 py-7 transition-colors duration-500 group-hover:text-paper md:grid-cols-[5rem_1.2fr_1fr_auto] md:gap-8 md:px-4 md:py-10">
                   <span className="font-mono text-xs text-stone transition-colors group-hover:text-lime">

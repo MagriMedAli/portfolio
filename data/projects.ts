@@ -1,4 +1,4 @@
-export type CardTheme = "ink" | "cobalt" | "paper" | "lime";
+export type CardTheme = "ink" | "forest" | "paper" | "lime";
 
 export interface Project {
   id: string;
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     ],
     repoUrl: "https://github.com/MagriMedAli/flowdesk-ai-agent",
     image: "/projects/flowdesk-1.png",
-    theme: "cobalt",
+    theme: "forest",
   },
   {
     id: "ai-lead-qualification-agent",
@@ -119,7 +119,7 @@ export const projects: Project[] = [
     ],
     repoUrl: "https://github.com/MagriMedAli/WhatsApp-order-automation-system",
     image: "/projects/whatsapp-order.jpg",
-    theme: "cobalt",
+    theme: "lime",
   },
   {
     id: "ai-cv-extractor",
@@ -136,7 +136,7 @@ export const projects: Project[] = [
     ],
     repoUrl: "https://github.com/MagriMedAli/CVextractor",
     image: "/projects/cv-extractor.png",
-    theme: "lime",
+    theme: "forest",
   },
   {
     id: "price-stock-tracker",

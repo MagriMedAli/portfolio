@@ -26,7 +26,7 @@ function Word({ word, range, progress }: { word: string; range: [number, number]
   );
 }
 
-/** Illustrated portrait whose head breaks out of the top of a cobalt card. */
+/** Illustrated portrait whose head breaks out of the top of a forest card. */
 function Portrait() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -35,13 +35,13 @@ function Portrait() {
 
   return (
     <Reveal>
-      <div ref={ref} className="group relative mx-auto w-full max-w-md pt-[22%]">
+      <div ref={ref} className="group relative mx-auto w-full max-w-md overflow-x-clip pt-[22%] lg:overflow-x-visible">
         <div className="relative aspect-[4/5] w-full">
-          <div className="absolute inset-0 overflow-hidden rounded-[2rem] bg-cobalt">
+          <div className="absolute inset-0 overflow-hidden rounded-[2rem] bg-forest">
             <div aria-hidden="true" className="dot-grid absolute inset-0 opacity-70" />
             <span
               aria-hidden="true"
-              className="absolute -left-3 bottom-6 select-none font-display text-[7rem] font-extrabold uppercase leading-none tracking-[-0.06em] text-cobaltdeep"
+              className="absolute -left-3 bottom-6 select-none font-display text-[7rem] font-extrabold uppercase leading-none tracking-[-0.06em] text-forestdeep"
             >
               MAM
             </span>
@@ -63,7 +63,7 @@ function Portrait() {
             ✺ That&apos;s me
           </span>
           <span className="absolute -left-3 bottom-[14%] -rotate-[6deg] rounded-full bg-paper px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink shadow-lg md:-left-6">
-            Sousse, TN
+            Monastir, TN
           </span>
         </div>
       </div>

@@ -90,7 +90,7 @@ function Packet({ d, duration }: { d: string; duration: number }) {
   return (
     <g>
       <path ref={pathRef} d={d} fill="none" stroke="none" />
-      <circle ref={dotRef} r="5" fill="#D4F54A" opacity="0" style={{ filter: "drop-shadow(0 0 6px #D4F54A)" }} />
+      <circle ref={dotRef} r="5" fill="#B8E36A" opacity="0" style={{ filter: "drop-shadow(0 0 6px #B8E36A)" }} />
     </g>
   );
 }
@@ -135,7 +135,7 @@ export default function WorkflowCanvas() {
 
       <div className="dot-grid px-3 py-4 md:px-5 md:py-6" aria-hidden="true">
         <svg viewBox="0 0 600 340" className="w-full">
-          <path d={inPath} fill="none" stroke={step >= 0 ? "#7A8C2E" : "#34343C"} strokeWidth="1.5" />
+          <path d={inPath} fill="none" stroke={step >= 0 ? "#6E8740" : "#39413A"} strokeWidth="1.5" />
           {(["order", "reply", "human"] as NodeId[]).map((id) => {
             const active = id === scenario.branch && step >= 2;
             return (
@@ -143,7 +143,7 @@ export default function WorkflowCanvas() {
                 key={id}
                 d={branchPath(id)}
                 fill="none"
-                stroke={active ? "#D4F54A" : "#34343C"}
+                stroke={active ? "#B8E36A" : "#39413A"}
                 strokeWidth={active ? 2 : 1.5}
                 strokeDasharray={active ? undefined : "4 5"}
                 style={{ transition: "stroke 0.4s" }}
@@ -169,8 +169,8 @@ export default function WorkflowCanvas() {
                   width={W}
                   height={H}
                   rx="12"
-                  fill="#151518"
-                  stroke={on ? "#D4F54A" : "#34343C"}
+                  fill="#1A1E1B"
+                  stroke={on ? "#B8E36A" : "#39413A"}
                   strokeWidth={on ? 1.5 : 1}
                   style={{ transition: "stroke 0.4s" }}
                 />
@@ -182,22 +182,22 @@ export default function WorkflowCanvas() {
                     height={H + 8}
                     rx="15"
                     fill="none"
-                    stroke="#D4F54A"
+                    stroke="#B8E36A"
                     strokeOpacity="0.35"
                   >
                     <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="0.6s" repeatCount="indefinite" />
                   </rect>
                 )}
-                <rect x={n.x + 10} y={n.y + 12} width="32" height="32" rx="8" fill={on ? "#2A3112" : "#1D1D22"} />
-                <Icon x={n.x + 18} y={n.y + 20} size={16} color={on ? "#D4F54A" : "#A6A6B0"} strokeWidth={2} />
+                <rect x={n.x + 10} y={n.y + 12} width="32" height="32" rx="8" fill={on ? "#2A3320" : "#262C27"} />
+                <Icon x={n.x + 18} y={n.y + 20} size={16} color={on ? "#B8E36A" : "#A3AAA2"} strokeWidth={2} />
                 <text x={n.x + 52} y={n.y + 25} fill="#EDEAE4" fontSize="14" fontWeight="600" fontFamily="var(--font-inter), sans-serif">
                   {n.title}
                 </text>
-                <text x={n.x + 52} y={n.y + 42} fill="#6E6E78" fontSize="10" fontFamily="var(--font-jbmono), monospace">
+                <text x={n.x + 52} y={n.y + 42} fill="#6F776F" fontSize="10" fontFamily="var(--font-jbmono), monospace">
                   {n.sub}
                 </text>
-                <circle cx={n.x} cy={n.y + H / 2} r="3.5" fill="#0D0D0F" stroke="#34343C" />
-                <circle cx={n.x + W} cy={n.y + H / 2} r="3.5" fill="#0D0D0F" stroke="#34343C" />
+                <circle cx={n.x} cy={n.y + H / 2} r="3.5" fill="#111412" stroke="#39413A" />
+                <circle cx={n.x + W} cy={n.y + H / 2} r="3.5" fill="#111412" stroke="#39413A" />
               </g>
             );
           })}

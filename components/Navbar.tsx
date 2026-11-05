@@ -22,6 +22,7 @@ export default function Navbar() {
     let last = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
+      if (Math.abs(y - last) < 12) return;
       setHidden(y > 200 && y > last);
       last = y;
     };
@@ -84,7 +85,7 @@ export default function Navbar() {
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="on-dark fixed inset-0 z-[65] flex flex-col justify-between bg-cobalt px-4 pb-8 pt-24 text-paper lg:hidden"
+            className="on-dark fixed inset-0 z-[65] flex flex-col justify-between bg-forest px-4 pb-8 pt-24 text-paper lg:hidden"
           >
             <ul className="flex flex-col gap-1">
               {links.map((link, i) => (

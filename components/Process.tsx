@@ -29,7 +29,7 @@ const steps = [
 
 function StepCard({ step, i }: { step: (typeof steps)[number]; i: number }) {
   return (
-    <article className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[2rem] border border-paper/20 bg-cobaltdeep/60 p-7 md:p-10 lg:w-[38vw] lg:shrink-0">
+    <article className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[2rem] border border-paper/20 bg-forestdeep/60 p-7 md:p-10 lg:w-[38vw] lg:shrink-0">
       <span
         aria-hidden="true"
         className="text-outline-paper pointer-events-none absolute -right-4 -top-10 select-none font-display text-[13rem] font-extrabold leading-none tracking-[-0.06em] md:text-[17rem]"
@@ -78,7 +78,7 @@ export default function Process() {
   );
 
   return (
-    <section id="process" className="on-dark relative bg-cobalt text-paper">
+    <section id="process" className="on-dark relative bg-forest text-paper">
       {/* Desktop: pinned horizontal scroll */}
       <div ref={ref} className="relative hidden h-[300vh] lg:block">
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
@@ -20,8 +20,8 @@ const themes: Record<
     secondary: "border-edge hover:border-lime hover:text-lime",
     dark: true,
   },
-  cobalt: {
-    card: "bg-cobalt text-paper",
+  forest: {
+    card: "bg-forest text-paper",
     muted: "text-paper/75",
     accent: "text-lime",
     chip: "border-paper/30 text-paper/85",
@@ -32,19 +32,19 @@ const themes: Record<
   paper: {
     card: "bg-paper2 text-ink ring-1 ring-ink/10",
     muted: "text-stone",
-    accent: "text-cobalt",
+    accent: "text-moss",
     chip: "border-ink/15 text-stone",
-    primary: "bg-cobalt text-paper hover:bg-ink",
-    secondary: "border-ink/25 hover:border-cobalt hover:text-cobalt",
+    primary: "bg-forest text-paper hover:bg-ink",
+    secondary: "border-ink/25 hover:border-moss hover:text-moss",
     dark: false,
   },
   lime: {
     card: "bg-lime text-ink",
     muted: "text-ink/70",
-    accent: "text-cobalt",
+    accent: "text-moss",
     chip: "border-ink/20 text-ink/75",
-    primary: "bg-ink text-paper hover:bg-cobalt",
-    secondary: "border-ink/30 hover:border-cobalt hover:text-cobalt",
+    primary: "bg-ink text-paper hover:bg-forest",
+    secondary: "border-ink/30 hover:border-moss hover:text-moss",
     dark: false,
   },
 };
@@ -54,11 +54,13 @@ function Card({
   i,
   total,
   progress,
+  stacked,
 }: {
   project: Project;
   i: number;
   total: number;
   progress: MotionValue<number>;
+  stacked: boolean;
 }) {
   const t = themes[project.theme];
   const targetScale = 1 - (total - i) * 0.035;
@@ -68,7 +70,7 @@ function Card({
   return (
     <div className="md:sticky md:h-[min(80vh,720px)]" style={{ top: `calc(5.5rem + ${i * 14}px)` }}>
       <motion.article
-        style={{ scale }}
+        style={{ scale: stacked ? scale : 1 }}
         className={`${t.card} ${t.dark ? "on-dark" : ""} grid h-full origin-top grid-cols-1 gap-6 overflow-hidden rounded-[1.75rem] p-4 shadow-[0_-20px_60px_-30px_rgba(0,0,0,0.45)] md:grid-cols-[0.92fr_1.08fr] md:gap-8 md:rounded-[2.25rem] md:p-6`}
       >
         <div className="order-2 flex flex-col justify-center px-2 pb-3 md:order-1 md:px-4 md:py-2">
@@ -159,19 +161,29 @@ export default function Projects() {
   const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: container, offset: ["start start", "end end"] });
 
+  // Cards only stick and stack from md up; on phones they are a plain list and must not shrink
+  const [stacked, setStacked] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setStacked(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   return (
     <section id="work" className="relative bg-paper pb-24 pt-20 text-ink md:pb-40 md:pt-28">
       <div className="section-shell">
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-[1fr_auto]">
           <div>
-            <Label className="text-cobalt">Selected work</Label>
+            <Label className="text-moss">Selected work</Label>
             <BigTitle
               className="mt-6"
               lines={[
                 "Things I've",
                 <>
                   shipped
-                  <span className="ml-3 align-top font-mono text-[0.18em] font-normal tracking-normal text-cobalt">
+                  <span className="ml-3 align-top font-mono text-[0.18em] font-normal tracking-normal text-moss">
                     ({String(projects.length).padStart(2, "0")})
                   </span>
                 </>,
@@ -188,7 +200,7 @@ export default function Projects() {
 
         <div ref={container} className="relative mt-14 flex flex-col gap-6 md:mt-20 md:gap-[34vh]">
           {projects.map((p, i) => (
-            <Card key={p.id} project={p} i={i} total={projects.length} progress={scrollYProgress} />
+            <Card key={p.id} project={p} i={i} total={projects.length} progress={scrollYProgress} stacked={stacked} />
           ))}
         </div>
 
@@ -197,7 +209,7 @@ export default function Projects() {
             href="https://github.com/MagriMedAli?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 rounded-full border border-ink/20 px-6 py-3.5 font-mono text-xs uppercase tracking-[0.16em] transition-colors hover:border-cobalt hover:bg-cobalt hover:text-paper"
+            className="group inline-flex items-center gap-3 rounded-full border border-ink/20 px-6 py-3.5 font-mono text-xs uppercase tracking-[0.16em] transition-colors hover:border-moss hover:bg-forest hover:text-paper"
           >
             <Github size={15} /> All repositories
             <ArrowUpRight size={14} className="transition-transform group-hover:rotate-45" />

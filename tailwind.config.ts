@@ -5,21 +5,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Palette: graphite #111412 · forest charcoal #242A25 · warm ivory #F1F0E8 · acid green #B8E36A
         // Dark side
-        ink: "#0D0D0F",
-        coal: "#151518",
-        coal2: "#1D1D22",
-        edge: "#2B2B32",
-        fog: "#A6A6B0",
-        faint: "#6E6E78",
+        ink: "#111412",
+        coal: "#1A1E1B",
+        coal2: "#242A25",
+        edge: "#333B35",
+        fog: "#A3AAA2",
+        faint: "#6F776F",
         // Light side
-        paper: "#EFEBE3",
-        paper2: "#E4DFD4",
-        stone: "#66645F",
+        paper: "#F1F0E8",
+        paper2: "#E6E5DB",
+        stone: "#5F635C",
         // Brand
-        cobalt: "#2E3BFF",
-        cobaltdeep: "#1F28C9",
-        lime: "#D4F54A",
+        forest: "#242A25",
+        forestdeep: "#1A1F1B",
+        lime: "#B8E36A",
+        // Acid green darkened enough to read as text on ivory
+        moss: "#4B6620",
       },
       fontFamily: {
         display: ["var(--font-bricolage)", "sans-serif"],
@@ -40,8 +43,8 @@ const config: Config = {
           to: { transform: "translateX(0)" },
         },
         pulseDot: {
-          "0%, 100%": { boxShadow: "0 0 0 0 rgba(212,245,74,0.6)" },
-          "50%": { boxShadow: "0 0 0 6px rgba(212,245,74,0)" },
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(184,227,106,0.6)" },
+          "50%": { boxShadow: "0 0 0 6px rgba(184,227,106,0)" },
         },
         spinSlow: {
           to: { transform: "rotate(360deg)" },
