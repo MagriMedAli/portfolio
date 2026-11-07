@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { ease } from "./ui";
+import { ease, useDesktopMotion } from "./ui";
 
 const links = [
   { href: "#work", label: "Work" },
@@ -16,9 +16,14 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const desktopMotion = useDesktopMotion();
 
-  // Slide away while scrolling down, come back when scrolling up
+  // Desktop only: slide away while scrolling down, come back when scrolling up
   useEffect(() => {
+    if (!desktopMotion) {
+      setHidden(false);
+      return;
+    }
     let last = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
@@ -28,7 +33,7 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [desktopMotion]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -39,7 +44,8 @@ export default function Navbar() {
       <motion.header
         animate={{ y: hidden && !open ? "-120%" : 0 }}
         transition={{ duration: 0.45, ease }}
-        className="fixed inset-x-0 top-0 z-[70] mix-blend-difference"
+        // The colour-blend trick only on desktop; on phones it repaints every scroll frame, so use a solid bar
+        className="fixed inset-x-0 top-0 z-[70] border-b border-edge bg-ink lg:border-0 lg:bg-transparent lg:mix-blend-difference"
       >
         <nav aria-label="Primary" className="section-shell flex items-center justify-between py-5 text-white">
           <a href="#home" className="group font-display text-base font-bold uppercase tracking-[-0.02em] md:text-lg">

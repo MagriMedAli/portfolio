@@ -31,8 +31,16 @@ html.lenis body {
 
 html,
 body {
-  /* clip (not hidden) so nothing can make the page pan sideways on phones, without breaking sticky */
+  /* Nothing may make the page pan sideways on phones. `clip` keeps sticky working;
+     older Safari doesn't know it and falls back to `hidden`. */
+  overflow-x: hidden;
   overflow-x: clip;
+}
+
+html {
+  /* Stop iOS from enlarging text when the phone rotates (that reflow looks like a jump) */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -87,15 +95,17 @@ body {
   background-size: 24px 24px;
 }
 
-/* Film grain over everything */
-.grain::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 90;
-  opacity: 0.06;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Film grain over everything — desktop only: a fixed full-screen filter makes phones repaint on every scroll frame */
+@media (min-width: 1024px) and (pointer: fine) {
+  .grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 90;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 }
 
 /* Giant name letters: each one jumps and turns lime under the cursor */

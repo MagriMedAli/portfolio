@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import WorkflowCanvas from "./WorkflowCanvas";
-import { ease, Magnetic } from "./ui";
+import { ease, Magnetic, useDesktopMotion } from "./ui";
 
 const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
@@ -93,6 +93,7 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const nameY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
   const nameOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0.2]);
+  const desktopMotion = useDesktopMotion();
 
   // Wait for the intro curtain before animating the name in
   useEffect(() => {
@@ -127,7 +128,7 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <motion.h1 style={{ y: nameY, opacity: nameOpacity }} className="mt-8 md:mt-10" aria-label="Mohamed Ali Magri">
+        <motion.h1 style={desktopMotion ? { y: nameY, opacity: nameOpacity } : undefined} className="mt-8 md:mt-10" aria-label="Mohamed Ali Magri">
           <span aria-hidden="true" className="block">
             <FitLine text="Mohamed" ready={ready} delay={0} />
             <FitLine text="Ali Magri" ready={ready} delay={0.15} />

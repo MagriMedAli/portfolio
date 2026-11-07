@@ -6,6 +6,22 @@ import type { ReactNode } from "react";
 
 export const ease = [0.22, 1, 0.36, 1] as const;
 
+/**
+ * True only on a large screen with a mouse. Scroll-linked effects (parallax, fades tied to scroll)
+ * run there; on phones they lag behind touch scrolling and make the page shake, so phones get a static page.
+ */
+export function useDesktopMotion() {
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+    const update = () => setOn(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return on;
+}
+
 export function Reveal({
   children,
   delay = 0,

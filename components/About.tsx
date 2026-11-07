@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { stackGroups } from "@/data/stack";
 import { projects } from "@/data/projects";
-import { Label, Reveal } from "./ui";
+import { Label, Reveal, useDesktopMotion } from "./ui";
 
 const statement =
   "I'm Mohamed Ali Magri, a software engineer from Tunisia. I find the repetitive work hiding inside a business and replace it with systems that run on their own — AI agents, automated workflows, solid APIs, and the websites people actually use.";
@@ -13,12 +13,22 @@ const statement =
 // Words that get the italic lime treatment
 const highlight = new Set(["repetitive", "systems", "AI", "agents,", "websites"]);
 
-function Word({ word, range, progress }: { word: string; range: [number, number]; progress: MotionValue<number> }) {
+function Word({
+  word,
+  range,
+  progress,
+  scrub,
+}: {
+  word: string;
+  range: [number, number];
+  progress: MotionValue<number>;
+  scrub: boolean;
+}) {
   const opacity = useTransform(progress, range, [0.12, 1]);
   const special = highlight.has(word);
   return (
     <motion.span
-      style={{ opacity }}
+      style={scrub ? { opacity } : undefined}
       className={`mr-[0.25em] inline-block ${special ? "font-serif font-normal italic tracking-normal text-lime" : ""}`}
     >
       {word}
@@ -32,6 +42,7 @@ function Portrait() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   // Rises into place as you scroll; never above 0 so the jacket stays flush with the card bottom
   const y = useTransform(scrollYProgress, [0, 0.55], ["8%", "0%"]);
+  const desktopMotion = useDesktopMotion();
 
   return (
     <Reveal>
@@ -48,7 +59,7 @@ function Portrait() {
           </div>
           <motion.div
             // Wider than the card so the head rises above it; sides and bottom are clipped back to the card
-            style={{ y, clipPath: "inset(-40% 5.4% 0 5.4% round 0 0 2rem 2rem)" }}
+            style={{ y: desktopMotion ? y : 0, clipPath: "inset(-40% 5.4% 0 5.4% round 0 0 2rem 2rem)" }}
             className="absolute -inset-x-[6%] bottom-0 h-[118%]"
           >
             <Image
@@ -81,6 +92,7 @@ export default function About() {
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end 45%"] });
   const words = statement.split(" ");
+  const desktopMotion = useDesktopMotion();
 
   return (
     <section id="about" className="on-dark relative bg-ink py-24 text-paper md:py-40">
@@ -94,7 +106,7 @@ export default function About() {
               className="mt-8 font-display text-[clamp(1.8rem,3.6vw,3.6rem)] font-semibold leading-[1.08] tracking-[-0.035em]"
             >
               {words.map((w, i) => (
-                <Word key={i} word={w} progress={scrollYProgress} range={[i / words.length, (i + 1) / words.length]} />
+                <Word key={i} word={w} progress={scrollYProgress} range={[i / words.length, (i + 1) / words.length]} scrub={desktopMotion} />
               ))}
             </p>
           </div>
