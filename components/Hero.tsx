@@ -1,42 +1,25 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import WorkflowCanvas from "./WorkflowCanvas";
 import { ease, Magnetic, useDesktopMotion } from "./ui";
 
-const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
-/** One line of the giant name, font-size fitted so it spans the full width exactly. */
-function FitLine({ text, ready, delay }: { text: string; ready: boolean; delay: number }) {
-  const wrap = useRef<HTMLDivElement>(null);
-  const inner = useRef<HTMLSpanElement>(null);
-  const [size, setSize] = useState<number | null>(null);
-
-  useIsoLayoutEffect(() => {
-    const fit = () => {
-      if (!wrap.current || !inner.current) return;
-      inner.current.style.fontSize = "100px";
-      const w = inner.current.offsetWidth;
-      const next = (wrap.current.clientWidth / w) * 100 * 0.995;
-      inner.current.style.fontSize = `${next}px`;
-      setSize(next);
-    };
-    fit();
-    document.fonts?.ready.then(fit);
-    const ro = new ResizeObserver(fit);
-    if (wrap.current) ro.observe(wrap.current);
-    return () => ro.disconnect();
-  }, [text]);
-
+/**
+ * One line of the giant name, sized in pure CSS to span the container exactly.
+ * `widthEm` is the line's width in em, measured once with Bricolage Grotesque 800 at this tracking.
+ * No JavaScript measuring: on iPhone a ResizeObserver re-fit fired whenever the address bar moved
+ * and the two lines kept swapping sizes while scrolling.
+ */
+function FitLine({ text, widthEm, ready, delay }: { text: string; widthEm: number; ready: boolean; delay: number }) {
   return (
-    <div ref={wrap} className="w-full">
+    <div className="w-full [container-type:inline-size]">
       <span
-        ref={inner}
-        style={{ fontSize: size ? `${size}px` : "15vw" }}
-        className="inline-block whitespace-nowrap font-display font-extrabold uppercase leading-[0.8] tracking-[-0.055em]"
+        // cqw = 1% of the container's width; the vw value is a fallback for browsers without container units
+        style={{ fontSize: `min(calc(99cqw / ${widthEm}), calc((100vw - 2rem) / ${widthEm}))` }}
+        className="block whitespace-nowrap font-display font-extrabold uppercase leading-[0.8] tracking-[-0.055em]"
       >
         {text.split("").map((ch, i) => (
           <span key={i} className="inline-block overflow-hidden pb-[0.06em] align-bottom">
@@ -130,8 +113,8 @@ export default function Hero() {
 
         <motion.h1 style={desktopMotion ? { y: nameY, opacity: nameOpacity } : undefined} className="mt-8 md:mt-10" aria-label="Mohamed Ali Magri">
           <span aria-hidden="true" className="block">
-            <FitLine text="Mohamed" ready={ready} delay={0} />
-            <FitLine text="Ali Magri" ready={ready} delay={0.15} />
+            <FitLine text="Mohamed" widthEm={5.03} ready={ready} delay={0} />
+            <FitLine text="Ali Magri" widthEm={4.64} ready={ready} delay={0.15} />
           </span>
         </motion.h1>
 
