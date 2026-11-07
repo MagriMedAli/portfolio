@@ -90,7 +90,7 @@ function Packet({ d, duration }: { d: string; duration: number }) {
   return (
     <g>
       <path ref={pathRef} d={d} fill="none" stroke="none" />
-      <circle ref={dotRef} r="5" fill="#B8E36A" opacity="0" style={{ filter: "drop-shadow(0 0 6px #B8E36A)" }} />
+      <circle ref={dotRef} r="5" fill="#B8E36A" opacity="0" />
     </g>
   );
 }

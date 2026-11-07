@@ -43,8 +43,8 @@ const config: Config = {
           to: { transform: "translateX(0)" },
         },
         pulseDot: {
-          "0%, 100%": { boxShadow: "0 0 0 0 rgba(184,227,106,0.6)" },
-          "50%": { boxShadow: "0 0 0 6px rgba(184,227,106,0)" },
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.35" },
         },
         spinSlow: {
           to: { transform: "rotate(360deg)" },

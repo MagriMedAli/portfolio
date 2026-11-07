@@ -50,6 +50,7 @@ export default function Services() {
         <ul className="mt-16 border-t border-ink/15 md:mt-24">
           {services.map((s, i) => (
             <motion.li
+              data-reveal
               key={s.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -137,6 +137,7 @@ export default function Hero() {
 
         <div className="mt-10 grid grid-cols-1 items-center gap-12 md:mt-14 lg:grid-cols-[1fr_auto_1.35fr] lg:gap-14">
           <motion.div
+            data-reveal
             initial={{ opacity: 0, y: 30 }}
             animate={ready ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.55, ease }}
@@ -175,6 +176,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
+            data-reveal
             initial={{ opacity: 0, y: 50, rotate: 2 }}
             animate={ready ? { opacity: 1, y: 0, rotate: 0 } : {}}
             transition={{ duration: 1.1, delay: 0.65, ease }}

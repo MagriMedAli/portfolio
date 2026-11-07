@@ -37,10 +37,11 @@ export default function Marquee() {
       className="relative z-10 overflow-hidden bg-[linear-gradient(to_bottom,#242A25_50%,#F1F0E8_50%)] py-12 md:py-16"
       aria-label="What I do and the tools I use"
     >
-      <div className="-rotate-[3deg] scale-110">
+      <div className="lg:-rotate-[3deg] lg:scale-110">
         <Tape items={words} className="bg-lime text-ink" />
       </div>
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 rotate-[2.5deg] scale-110">
+      {/* The tech tape is ~8,700px wide — too big a layer for phone GPUs, so desktop only */}
+      <div className="absolute inset-x-0 top-1/2 hidden -translate-y-1/2 rotate-[2.5deg] scale-110 lg:block">
         <Tape items={tech} className="bg-ink text-paper" reverse />
       </div>
     </div>

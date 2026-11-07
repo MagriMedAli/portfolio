@@ -37,6 +37,14 @@ body {
   overflow-x: clip;
 }
 
+/* Phones and tablets: in-view animations only fade — nothing slides under the finger while scrolling.
+   !important beats the inline transform framer-motion writes. */
+@media (max-width: 1023px), (hover: none) {
+  [data-reveal] {
+    transform: none !important;
+  }
+}
+
 html {
   /* Stop iOS from enlarging text when the phone rotates (that reflow looks like a jump) */
   -webkit-text-size-adjust: 100%;

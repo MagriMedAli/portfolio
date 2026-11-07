@@ -33,6 +33,7 @@ export function Reveal({
 }) {
   return (
     <motion.div
+      data-reveal
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -63,6 +64,7 @@ export function BigTitle({
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden pb-[0.04em]">
           <motion.span
+            data-reveal
             className="block"
             variants={{ hidden: { y: "105%" }, show: { y: 0 } }}
             transition={{ duration: 1, delay: i * 0.08, ease }}
